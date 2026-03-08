@@ -21,5 +21,6 @@ extern int student_count;
 void print_menu();
 void add_student();
 void display_all();
+void delete_student();
 
 #endif
