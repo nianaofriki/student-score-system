@@ -15,13 +15,18 @@ int main() {
                 display_all();
                 break;
             case 3:
-                delete_student();  // 新增
+                delete_student();
                 break;
             case 4:
-                printf("感谢使用！\n");
+                modify_student();
+                break;
+            case 5:
+                search_student();
+                break;
+            case 6: 
+                printf("感谢使用！\n"); 
                 return 0;
-            default:
-                printf("输入错误\n");
+            default: printf("输入错误\n");
         }
         
         printf("\n按回车键继续...");

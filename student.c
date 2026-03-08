@@ -10,7 +10,9 @@ void print_menu() {
     printf("1. 添加学生\n");
     printf("2. 显示所有学生\n");
     printf("3. 删除学生\n");
-    printf("4. 退出\n");
+    printf("4. 修改学生\n");
+    printf("5. 查找学生\n");
+    printf("6. 退出\n");
     printf("请选择: ");
 }
 //添加
@@ -67,6 +69,69 @@ void delete_student(){
     }
 
     printf("未找到该学号！\n");
+}
+//改
+void modify_student(){
+    if(student_count==0){
+        printf("暂无学生数据！\n");
+        return;
+    }
+
+    char id[MAX_ID];
+    printf("\n--- 修改学生信息 ---\n");
+    printf("请输入要修改的学号: ");
+    scanf("%s", id);
+    
+    for (int i = 0; i < student_count; i++) {
+        if (strcmp(students[i].id, id) == 0) {
+            printf("找到学生：%s\n", students[i].name);
+            printf("请输入新姓名（原：%s）: ", students[i].name);
+            scanf("%s", students[i].name);
+            printf("请输入新年龄（原：%d）: ", students[i].age);
+            scanf("%d", &students[i].age);
+            printf("请输入新成绩（原：%.1f）: ", students[i].score);
+            scanf("%f", &students[i].score);
+            printf("修改成功！\n");
+            return;
+        }
+    }
+    
+    printf("未找到该学号！\n");
+}
+//搜索
+void search_student() {
+    if (student_count == 0) {
+        printf("暂无学生数据！\n");
+        return;
+    }
+    
+    int choice;
+    char keyword[MAX_ID];
+    int found = 0;
+    
+    printf("\n--- 查找学生 ---\n");
+    printf("1. 按学号查找\n");
+    printf("2. 按姓名查找\n");
+    printf("请选择查找方式: ");
+    scanf("%d", &choice);
+    
+    printf("请输入关键字: ");
+    scanf("%s", keyword);
+    
+    printf("\n查找结果：\n");
+    for (int i = 0; i < student_count; i++) {
+        if ((choice == 1 && strcmp(students[i].id, keyword) == 0) ||
+            (choice == 2 && strcmp(students[i].name, keyword) == 0)) {
+            printf("学号: %s, 姓名: %s, 年龄: %d, 成绩: %.1f\n",
+                   students[i].id, students[i].name, 
+                   students[i].age, students[i].score);
+            found = 1;
+        }
+    }
+    
+    if (!found) {
+        printf("未找到匹配的学生！\n");
+    }
 }
 //展示
 void display_all() {
