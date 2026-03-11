@@ -24,5 +24,7 @@ void display_all();
 void delete_student();
 void modify_student();
 void search_student();
+void save_to_file();
+void load_from_file();
 
 #endif

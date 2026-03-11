@@ -15,6 +15,7 @@ void print_menu() {
     printf("6. 退出\n");
     printf("请选择: ");
 }
+
 //添加
 void add_student() {
     char temp_id[MAX_ID];
@@ -149,4 +150,41 @@ void display_all() {
                students[i].age, 
                students[i].score);
     }
+}
+// 打开文件夹
+void load_from_file(){
+    FILE *fp = fopen("students.txt","r");// "w" : 写入模式,"r"：读取模式,"a"：追加模式,"r+"：读写模式
+    if (fp == NULL) {
+        printf("没有找到保存文件，将创建新文件\n");
+        return;
+    }
+    fscanf(fp,"%d",&student_count);
+    for (int i = 0; i < student_count; i++) {
+        fscanf(fp, "%s %s %d %f",
+               students[i].id,
+               students[i].name,
+               &students[i].age,
+               &students[i].score);
+    }
+    fclose(fp);
+    printf("加载成功！共加载 %d 条记录\n", student_count);
+}
+//保存
+void save_to_file(){
+    FILE *fp = fopen("students.tet","w");
+    if(fp == NULL){
+        printf("保存失败！\n");
+        return;
+    } // fopen() 可能失败（比如磁盘满了、权限不足），这时会返回 NULL
+    // 写入数据
+    fprintf(fp,"%d\n",student_count);
+    for(int i = 0;i < student_count;i++){
+        fprintf(fp,"%s %s %d %.1f\n",
+                students[i].id,
+                students[i].name,
+                students[i].age,
+                students[i].score);
+    }
+    fclose(fp);// 打开了记得关
+    printf("保存成功！共保存 %d 条记录\n", student_count);
 }
