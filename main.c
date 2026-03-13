@@ -1,8 +1,9 @@
+//ä¸»æ–‡ä»¶ï¼ˆè°ƒç”¨ï¼‰	main() å‡½æ•°
 #include "student.h"
 
 int main() {
     int choice;
-    // ³ÌĞòÆô¶¯Ê±¼ÓÔØ
+    // ç¨‹åºå¯åŠ¨æ—¶åŠ è½½
     load_from_file();
     
     while (1) {
@@ -25,17 +26,32 @@ int main() {
             case 5:
                 search_student();
                 break;
-            case 6: 
-                // ±£´æ
+            case 6:
+                printf("\nè¯·é€‰æ‹©æ’åºæ–¹å¼ï¼š\n");
+                printf("1. å‡åºï¼ˆä½åˆ†â†’é«˜åˆ†ï¼‰\n");
+                printf("2. é™åºï¼ˆé«˜åˆ†â†’ä½åˆ†ï¼‰\n");
+                printf("è¯·é€‰æ‹©: ");
+                int order;
+                scanf("%d", &order);
+                if (order == 1) {
+                    sort_by_score(1);  // å‡åº
+                } else if (order == 2) {
+                    sort_by_score(0);  // é™åº
+                } else {
+                    printf("è¾“å…¥é”™è¯¯\n");
+                }
+                break;
+            case 7: 
+                // ä¿å­˜
                 save_to_file();
-                printf("¸ĞĞ»Ê¹ÓÃ£¡Êı¾İÒÑ±£´æ\n"); 
+                printf("æ„Ÿè°¢ä½¿ç”¨ï¼æ•°æ®å·²ä¿å­˜\n"); 
                 return 0;
-            default: printf("ÊäÈë´íÎó\n");
+            default: printf("è¾“å…¥é”™è¯¯\n");
         }
         
-        printf("\n°´»Ø³µ¼ü¼ÌĞø...");
+        printf("\næŒ‰å›è½¦é”®ç»§ç»­...");
         getchar();
-        getchar();//»º´æ
+        getchar();//ç¼“å­˜
     }
     return 0;
 }
